@@ -1,0 +1,44 @@
+    if request.method == "POST":
+
+        result = request.form
+        cur.connection.commit()
+        if table == "grp_tank_details":
+            id_ = request.form['id']
+            height_1m = request.form['height_1m']
+            height_2m = request.form['height_2m']
+            height_3m = request.form['height_3m']
+            height_4m = request.form['height_4m']
+            installation_price = request.form['installation_price']
+
+            cur.execute("UPDATE grp_tank_details SET id=%s, height_1m=%s,"
+                        "height_2m=%s, height_3m=%s, height_4m=%s, installation_price=%s",
+                        (id_, height_1m, height_2m, height_3m, height_4m, installation_price))
+
+        elif table == "steel_tank_details":
+            id_ = request.form['id']
+            unit_price = request.form['unit_price']
+            installation_price = request.form['installation_price']
+            unit_length = request.form['unit_length']
+
+            cur.execute("UPDATE steel_tank_details SET id=%s, unit_price=%s, installation_price=%s, unit_length=%s",
+                        (id_, unit_price, installation_price, unit_length))
+
+        elif table == "vat":
+            id_ = request.form['id']
+            vat = request.form['vat']
+
+            cur.execute("UPDATE vat SET id=%s, vat=%s ",
+                        (id_, vat))
+
+        else:
+            msg = "You have made a wrong selection"
+            return render_template("edit_page.html", msg=msg)
+
+        cur.connection.commit()
+
+        cur.close()
+
+        # what to if post request is successful
+        flash("Details updated successfully", "Success")
+
+        return redirect(url_for("admit_page"))

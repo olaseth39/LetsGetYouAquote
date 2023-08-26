@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</form>
+</body>
+</html>
+
+
+
+<th>ID</th>
+            <th>UNIT PRICE</th>
+            <th>INSTALLATION PRICE</th>
+            <th>UNIT LENGTH</th>
+            <th>Action</th>
+
+
+
+ $.ajax({
+                url : "/"
+                type : "GET"
+                headers = {'accept': 'application/json'}
+                date : JSON.stringify(value)
+            })
+
+ function getTotalValue(){
+                    const s = JSON.stringify(total)
+                    console.log(s)
+            }
+
+
+
+<form method="POST" action="">
+                <div class="form-group me">
+                     <label for="email">Name</label>
+                     <input type="text" name="name" class="form-control" value="{{request.form.name}}" required>
+                  </div>
+                   <div class="form-group me">
+                     <label for="email">Email</label>
+                     <input type="email" name="email" class="form-control" value="{{request.form.email}}" required>
+                  </div>
+                  <div class="form-group me">
+                     <label for="volume">Volume </label>
+                     <input type="text" name="volume" class="form-control" value="{{request.form.volume}}" required>
+                  </div>
+                   <div class="form-group me">
+                     <label for="tank">Type of Tank </label>
+                       {{render_field(form.type_of_tank, class_="form-control")}}
+                  </div>
+                <div class="form-group me">
+                     <label for="fare">Transportation Cost </label>
+                     <input type="text" name="transport" class="form-control" value="{{request.form.transport}}">
+                  </div>
+                  <div class="form-group text-center me">
+                      <button type="submit" class="btn btn-primary">Get Quotation</button>
+                  </div>
+            </form>
+
+
+<td scope="col">{{details.name}}</td>
+                        <td scope="col">{{details.company}}</td>
+                        <td scope="col">{{details.address}}</td>
+                        <td scope="col">{{details.email}}</td>
+                        <td scope="col">{{details.volume}}</td>
+                        <td scope="col">{{details.type_of_tank}}</td>
+                        <td scope="col">{{details.transport}}</td>
+                        <td scope="col">{{details.mobile}}</td>
+                        <td scope="col">{{details.date}}</td>
