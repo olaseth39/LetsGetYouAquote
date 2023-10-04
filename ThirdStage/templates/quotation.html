@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <br/>
+    <a href="/"><button class="btn btn-primary"><- Go back</button></a>
+    {% if session.logged_in %}
+        <a class="case" href="/admin_page"><button class="btn btn-primary">Edit Parameters</button></a>
+    <br/>
+        {% for key, value in result.items() %}
+        <p><span>{{key}} :</span>{{value}}</p>
+        {% endfor %}
+    {% else %}
+        <p>Click on the admin button and login to modify the parameters used for the calculation</p>
+        <p></p>
+    {% endif%}
+    <p>
+        We could not get the exact volume <b>{{volume}}</b> you required, but we used a very close volume for you.
+    </p>
+    <p></p>
+    <hr>
+
+    {% if session['logged_in'] and logo %}
+        <div class="mt-5">
+           <img src="{{url_for('static', filename='/uploads/' + logo)}}" class="center-quote-image" title="Company logo">
+        </div>
+    {% else%}
+        <div class="mt-5">
+           <img src="{{url_for('static', filename='quoteLogo.PNG')}}" class="center-image" title="Customize your company logo">
+        </div>
+    {% endif %}
+
+   <table class="table table-bordered">
+       <thead>
+            <tr>
+                <th class="center" colspan="5">Quotation</th>
+            </tr>
+       </thead>
+       <tbody>
+            <tr>
+                <th colspan="3">Attn &nbsp; : {{name}} <br/> {{company}} <br/> {{address}} <br> {{email}} <br/> {{mobile}}</th>
+                <th colspan="2">Date: {{data.date}}</th>
+            </tr>
+            <tr>
+                <th><input type="hidden" name="" value="{{result['height_1m']}}" id="height_1m"></th>
+                <th><input type="hidden" name="" value="{{result['height_2m']}}" id="height_2m"></th>
+                <th><input type="hidden" name="" value="{{result['height_3m']}}" id="height_3m"></th>
+                <th><input type="hidden" name="" value="{{result['height_4m']}}" id="height_4m"></th>
+                <th><input type="hidden" name="" value="{{result['unit_price']}}" id="unitPrice"></th>
+                <th><input type="hidden" name="" value="{{result['vat']}}" id="vat_"></th>
+                <th><input type="hidden" name="" value="{{transport}}" id="transportVal"></th>
+                <th><input type="hidden" name="" value="{{result['installation_price']}}" id="installPriceGrp"></th>
+                <th><input type="hidden" name="" value="{{result['stl.installation_price']}}" id="installPriceStl"></th>
+            </tr>
+            <tr>
+                <th class="center" colspan="5">Supply and Installation of <span id="getTankType">{{type_of_tank}}</span> tank</th>
+            </tr>
+            <tr>
+<!--                Intentionally left for space-->
+            </tr>
+            <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">Description</th>
+                <th scope="col">QTY</th>
+                <th scope="col">UnitPrice</th>
+                <th scope="col">Amount</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>{{get_best_dimension[0]}}
+                            <br> Volume required in litres: <span id="panel">&nbsp;: {{volume * 1000}}</span>
+                            <br> Height of : <span id="height">{{get_best_dimension[2]}}</span></th>
+                <th>1</th>
+
+                <th>&#8358;<span id="price">{{get_best_dimension[1] * result['unit_price']}}</span></th>
+                <th>&#8358;<span id="amount">{{get_best_dimension[1] * result['unit_price']*1}}</span></th>
+            </tr>
+            <tr>
+                <th>2</th>
+                <th>Installation</th>
+                <th>1</th>
+
+                <th>&#8358<span id="installPrice"></span></th>
+                <th>&#8358<span id="installAmount"></span></th>
+
+            </tr>
+            {% if session.logged_in %}
+            <tr>
+                <th class="center" colspan="4">Transportation</th>
+                <th>&#8358<span id="transport"></span></th>
+            </tr>
+            {% endif %}
+            <tr>
+                <th class="center" colspan="4">Subtotal</th>
+                <th>&#8358<span id="subtotal"></span></th>
+            </tr>
+            <tr>
+                <th class="center" colspan="4">Vat @ {{result['vat']*100}}%</th>
+                <th>&#8358<span id="vat"></span></th>
+            </tr>
+            <tr>
+                <th class="center" colspan="4">Total</th>
+                <th>&#8358<span id="total"></span></th>
+            </tr>
+            <tr>
+                <th class="center" colspan="5" id="word"></th>
+            </tr>
+       </tbody>
+   </table>
+    <p><i><b id="note"></b></i></p>
+
+{% endblock %}

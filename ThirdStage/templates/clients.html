@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    {% from '_formhelpers.html' import render_field %}
+
+<br/>
+
+<p> Your (Prospective) Clients </p>
+    <div class="row col-md-12">
+        <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        {% if details == "" %}
+                            <td class="center" colspan="10">No Quotation has been sent</td>
+                        {% else %}
+                            {% for detail in details %}
+                                {% for key,value in detail.items() %}
+                                    <td scope="col">{{key}}</td>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            {% for detail in details %}
+
+                                {% for key,value in detail.items() %}
+                                    <td scope="col">{{value}}</td>
+                                {% endfor %}
+                        </tr>
+                            {% endfor %}
+
+                </tbody>
+            </table>
+    </div>
+
+{% endblock %}
